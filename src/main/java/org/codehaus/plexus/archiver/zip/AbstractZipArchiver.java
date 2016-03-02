@@ -119,8 +119,8 @@ public abstract class AbstractZipArchiver
         Matcher m = Pattern.compile("(?:1\\.)?(\\d+)").matcher(System.getProperty("java.version"));
         if (! m.matches()) {
             throw new IllegalStateException("Invalid Java version");	
-    	}
-    	isJava7OrLower = Integer.parseInt(m.group(1)) <= 7;
+        }
+        isJava7OrLower = Integer.parseInt(m.group(1)) <= 7;
     }
 
 	// Renamed version of original file, if it exists
