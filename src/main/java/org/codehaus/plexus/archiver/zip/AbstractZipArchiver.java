@@ -113,7 +113,15 @@ public abstract class AbstractZipArchiver
 	 * Java versions from 8 and up round timestamp up.
 	 * s
      */
-    private static final boolean isJava7OrLower = Integer.parseInt(System.getProperty("java.version").split("\\.")[1]) <= 7;
+    private static final boolean isJava7OrLower;
+
+    static {
+        Matcher m = Pattern.compile("(?:1\\.)?(\\d+)").matcher(System.getProperty("java.version"));
+        if (! m.matches()) {
+            throw new IllegalStateException("Invalid Java version");	
+    	}
+    	isJava7OrLower = Integer.parseInt(m.group(1)) <= 7;
+    }
 
 	// Renamed version of original file, if it exists
     private File renamedFile = null;
