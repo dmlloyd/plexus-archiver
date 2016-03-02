@@ -116,8 +116,8 @@ public abstract class AbstractZipArchiver
     private static final boolean isJava7OrLower;
 
     static {
-        Matcher m = Pattern.compile("(?:1\\.)?(\\d+)").matcher(System.getProperty("java.version"));
-        if (! m.matches()) {
+        Matcher m = Pattern.compile("^(?:1\\.)?(\\d+)").matcher(System.getProperty("java.version"));
+        if (! m.find()) {
             throw new IllegalStateException("Invalid Java version");	
         }
         isJava7OrLower = Integer.parseInt(m.group(1)) <= 7;
